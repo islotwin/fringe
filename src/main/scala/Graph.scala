@@ -3,33 +3,60 @@ case class Graph[T](newNodes: Set[Node[T]] = null, newEdges: Set[Edge] = null) {
   val edges : Set[Edge] = newEdges
 
   def addEdge(edge : Edge) : Graph[T] = {
-    Graph(nodes, edges + edge)
+    if(edges == null) {
+      Graph(nodes, Set[Edge]() + edge)
+    }
+    else if (!(nodes.exists(x => x.id == edge.fromId)
+             && nodes.exists(x => x.id == edge.toId))) {
+      throw new Exception("Given node doesn't exist");
+    }
+    else if(edges.exists(x=> x.fromId == edge.fromId && x.toId == edge.toId)){
+      throw new Exception("Given edge already exists");
+    }
+    else
+      Graph(nodes, edges + edge)        
   }
 
   def addNode(node : Node[T]) : Graph[T] = {
-    Graph(nodes + node, edges)
+    if(nodes == null)
+      Graph(Set[Node[T]]() + node,  edges)
+    else if (nodes.exists(_.id == node.id)){
+      throw new Exception("Given node already exists");
+    }
+    else {
+      Graph(nodes + node, edges)
+    }
   }
 
   def removeEdge(edge : Edge) : Graph[T] = {
-    Graph(nodes, edges - edge)
+    if(!edges.exists(x=> x.fromId == edge.fromId && x.toId == edge.toId)){
+      throw new Exception("Given edge doesn't exist");
+    }
+    else {
+      Graph(nodes, edges - edge)
+    }
   }
 
   def removeNode(idToDelete : Int) : Graph[T] = {
-    Graph(nodes.filter(_.id != idToDelete), edges.filter(x => !(x.fromId == idToDelete || x.toId == idToDelete)));
+    if(!nodes.exists(x=> x.id == idToDelete)){
+      throw new Exception("Given node doesn't exists");
+    }
+    else{
+      Graph(nodes.filter(_.id != idToDelete)
+           , edges.filter(x => !(x.fromId == idToDelete || x.toId == idToDelete)));
+    }
   }
 
   def removeEdge(idFromDel : Int, idToDel : Int) : Graph[T] = {
+    if(!edges.exists(x=> x.fromId == idFromDel && x.toId == idToDel)){
+      throw new Exception("Given edge doesn't exist");
+    }
     Graph(nodes, edges.filter(x => !(x.fromId == idFromDel && x.toId == idToDel)));
   }
 
   def findChildren(nodeId : Int) : (Set[Node[T]], Set[Edge]) = {
     val children = edges.filter(e => e.fromId == nodeId)
     (nodes.filter(n => children.exists(_.toId == n.id)), children);
-  }
-
-  def findParents(nodeId : Int) : Set[Node[T]] = {
-    val parents = edges.filter(e => e.toId == nodeId)
-    nodes.filter(x => edges.exists(_.toId == x.id));
   }
 }
 
