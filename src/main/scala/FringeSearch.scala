@@ -2,11 +2,10 @@ case class FringeSearch[T](graph: Graph[T], start: Int, goal: Int, h: (Int, Grap
 
   def run(): List[Int] = {
     if (start != goal) {
-      val result = findPath((Map[ Int, (Double, Option[Int])]((start, (0, None)), goal -> null), List(start), Double.PositiveInfinity), h(start, graph))
+      val result = aggregateWhile((Map[ Int, (Double, Option[Int])]((start, (0, None)), goal -> null), List(start), Double.PositiveInfinity), h(start, graph))
       val cache = result._1._1
       if (isSolved(cache)) {
-        println(cache)
-        cache.toList.map(c => c._1)
+        findPath(cache, start, goal, List((goal, cache(goal))))._4.map(n => n._1)
       }
       else {
         List()
@@ -18,7 +17,7 @@ case class FringeSearch[T](graph: Graph[T], start: Int, goal: Int, h: (Int, Grap
   }
 
   // (cache, fringe, fmin), fLimit
-  def findPath(tuple: (Map[ Int, (Double, Option[Int])], List[Int], Double), fLimit: Double)
+  def aggregateWhile(tuple: (Map[ Int, (Double, Option[Int])], List[Int], Double), fLimit: Double)
   : (( Map[ Int, (Double, Option[Int])], List[Int], Double ), Double) = {
     val result = tuple._2
       .foldLeft(tuple._1, tuple._2, Double.PositiveInfinity)((r: (Map[Int, (Double, Option[Int])], List[Int], Double), n: Int) => {
@@ -54,7 +53,7 @@ case class FringeSearch[T](graph: Graph[T], start: Int, goal: Int, h: (Int, Grap
     val fMin = result._3
 
     if(!(isSolved(result._1) || result._2.isEmpty)) {
-      findPath(result, if(fMin != Double.PositiveInfinity) fMin else fLimit)
+      aggregateWhile(result, if(fMin != Double.PositiveInfinity) fMin else fLimit)
     }
     else {
       (result, fLimit)
@@ -63,6 +62,24 @@ case class FringeSearch[T](graph: Graph[T], start: Int, goal: Int, h: (Int, Grap
 
   def isSolved(cache : Map[ Int, (Double, Option[Int])]) : Boolean = {
     cache(goal) != null
+  }
+
+  def findPath(cache:  Map[ Int, (Double, Option[Int])], start: Int, goal: Int, path: List[ (Int, (Double, Option[Int]))]) : (Map[ Int, (Double, Option[Int])],
+    Int, Int, List[ (Int, (Double, Option[Int]))]) = {
+    if(path.head._1 == start) {
+      (cache, start, goal, path)
+    }
+    else {
+      val current = cache(path.head._1)
+      val parent = current._2
+      if(parent.nonEmpty && parent.get != null){
+        val p = cache(parent.get)
+        findPath(cache, start, goal, (parent.get, p) +: path)
+      }
+      else {
+        (cache, start, goal, path)
+      }
+    }
   }
 
 }
