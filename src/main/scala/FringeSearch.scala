@@ -5,7 +5,11 @@ case class FringeSearch[T](graph: Graph[T], start: Int, goal: Int, h: (Int, Grap
       val result = aggregateWhile((Map[ Int, (Double, Option[Int])]((start, (0, None)), goal -> null), List(start), Double.PositiveInfinity), h(start, graph))
       val cache = result._1._1
       if (isSolved(cache)) {
-        findPath(cache, start, goal, List((goal, cache(goal))))._4.map(n => n._1)
+        val path = findPath(cache, start, goal, List((goal, cache(goal))))._4
+
+        path.map(n => n._1)/*((r: Double, n: (Double, Option[Int])) => {
+          r + n._1
+        }))*/
       }
       else {
         List()

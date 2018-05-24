@@ -16,7 +16,7 @@ object HelloWorld extends App {
 
     println(graph)
 
-    def h[T](cost: Int, graph: Graph[T]): Double = { 0 }
+    def h[T](id: Int, graph: Graph[T]): Double = { 0 }
     val fringe = FringeSearch(graph, 1, 4, h[Int])
     val res = fringe.run()
     println(res)

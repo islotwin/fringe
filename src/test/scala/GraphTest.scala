@@ -6,7 +6,7 @@ class GraphTest extends FunSuite {
 		val graph = Graph[Int]()
 			.addNode(Node[Int](1, 69))
 		
-		assert(graph.nodes === Set(Node(1,69)));
+		assert(graph.nodes === Set(Node(1,69)))
     }
   
 	test("addMultipleNodes") {
@@ -14,7 +14,7 @@ class GraphTest extends FunSuite {
 			.addNode(Node[Int](1, 69))
 			.addNode(Node[Int](2,420))
 	
-		assert(graph.nodes === Set(Node(1,69), Node(2,420)));
+		assert(graph.nodes === Set(Node(1,69), Node(2,420)))
     }
   
     test("addNodeWithExistingId") {
@@ -31,7 +31,7 @@ class GraphTest extends FunSuite {
 			.addNode(Node[Int](2, 420))
 			.addEdge(Edge(1, 2, 6.0))
 		
-		assert(graph.edges === Set(Edge(1, 2, 6.0)));
+		assert(graph.edges === Set(Edge(1, 2, 6.0)))
 	}
 	
       test("addMultipleEdges") {
@@ -42,7 +42,7 @@ class GraphTest extends FunSuite {
 			.addEdge(Edge(1, 2, 6.0))
 			.addEdge(Edge(2, 3, 16.0))
 		
-		assert(graph.edges === Set(Edge(1, 2, 6.0), Edge(2, 3, 16.0)));
+		assert(graph.edges === Set(Edge(1, 2, 6.0), Edge(2, 3, 16.0)))
 	}
 
   
@@ -71,7 +71,7 @@ class GraphTest extends FunSuite {
 			.addEdge(Edge(1, 2, 6.0))
 			.removeEdge(1,2)
 		
-		assert(graph.edges === Set());
+		assert(graph.edges === Set())
 	}
 	
 	test("removeEdgeThatDoesntExist") {
@@ -89,7 +89,7 @@ class GraphTest extends FunSuite {
 			.addNode(Node[Int](2, 420))
 			.removeNode(2)
 		
-		assert(graph.nodes === Set(Node(1,69)));
+		assert(graph.nodes === Set(Node(1,69)))
 	}
 	
 	test("removeNodeWithEgdes") {
@@ -101,8 +101,8 @@ class GraphTest extends FunSuite {
 			.addEdge(Edge(3, 2, 15.0))
 			.removeNode(3)
 		
-		assert(graph.nodes === Set(Node(1,69), Node(2, 420)));
-		assert(graph.edges === Set(Edge(1, 2, 5.0)));
+		assert(graph.nodes === Set(Node(1,69), Node(2, 420)))
+		assert(graph.edges === Set(Edge(1, 2, 5.0)))
 	}
 	
 	test("removeNodeThatDoesntExist") {
@@ -125,8 +125,8 @@ class GraphTest extends FunSuite {
 			.findChildren(2)
 
 		
-		assert(children._1 === Set(Node(3,420)));
-		assert(children._2 === Set(Edge(2,3,15.0)));
+		assert(children._1 === Set(Node(3,420)))
+		assert(children._2 === Set(Edge(2,3,15.0)))
 	}
 	
 	
