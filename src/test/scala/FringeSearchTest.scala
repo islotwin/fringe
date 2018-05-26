@@ -47,7 +47,7 @@ class FringeSearchTest extends FunSuite {
       .addEdge(Edge(1, 2, 4.0))
 
     def h[T](cost: Int, graph: Graph[T]): Double = { 0 }
-    val fringe = FringeSearch(graph, 1, 2, h[Int])
+    val fringe = FringeSearch(graph, 1, 1, h[Int])
     val res = fringe.run()
 
     println(res)

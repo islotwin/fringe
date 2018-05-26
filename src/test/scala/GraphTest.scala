@@ -55,6 +55,15 @@ class GraphTest extends FunSuite {
 			.addEdge(Edge(1, 2, 6.0))
 			}
     }
+    
+    test("addEdgeWithTargetAsSource") {
+		assertThrows[Exception] {
+			val graph = Graph[Int]()
+			.addNode(Node[Int](1, 69))
+			.addNode(Node[Int](2,420))
+			.addEdge(Edge(1, 1, 6.0))
+			}
+    }
 	
 	test("addEdgeWithoutNodes") {
 		assertThrows[Exception] {
