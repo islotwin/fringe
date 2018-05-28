@@ -237,7 +237,7 @@
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="FringeSearch#aggregateWhile" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="FringeSearch#aggregateWhile" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="aggregateWhile(tuple:(Map[Int,(Double,Option[Int])],List[Int],Double),fLimit:Double):((Map[Int,(Double,Option[Int])],List[Int],Double),Double)"></a><a id="aggregateWhile((Map[Int,(Double,Option[Int])],List[Int],Double),Double):((Map[Int,(Double,Option[Int])],List[Int],Double),Double)"></a>
       <span class="permalink">
       <a href="FringeSearch.html#aggregateWhile(tuple:(Map[Int,(Double,Option[Int])],List[Int],Double),fLimit:Double):((Map[Int,(Double,Option[Int])],List[Int],Double),Double)" title="Permalink">
@@ -252,7 +252,10 @@
         <span class="name">aggregateWhile</span><span class="params">(<span name="tuple">tuple: (<span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Int">Int</span>, (<span class="extype" name="scala.Double">Double</span>, <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Int">Int</span>])], <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Int">Int</span>], <span class="extype" name="scala.Double">Double</span>)</span>, <span name="fLimit">fLimit: <span class="extype" name="scala.Double">Double</span></span>)</span><span class="result">: ((<span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Int">Int</span>, (<span class="extype" name="scala.Double">Double</span>, <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Int">Int</span>])], <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Int">Int</span>], <span class="extype" name="scala.Double">Double</span>), <span class="extype" name="scala.Double">Double</span>)</span>
       </span>
       
-      
+      <p class="shortcomment cmt">recursive function instead of while in pseudocode to avoid vars</p><div class="fullcomment"><div class="comment cmt"><p>recursive function instead of while in pseudocode to avoid vars</p></div><dl class="paramcmts block"><dt class="param">tuple</dt><dd class="cmt"><p>(cache, fringe, fmin) current temporary values in each call
+             cache keeps the best parents of nodes already visited
+             fringe is a list of nodes to visit in this call
+             fMin the minimal cost of path that exceeds fLimit</p></dd><dt class="param">fLimit</dt><dd class="cmt"><p>cost limit to which we search through children nodes</p></dd><dt>returns</dt><dd class="cmt"><p>tuple after current call</p></dd></dl></div>
     </li><li name="scala.Any#asInstanceOf" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="asInstanceOf[T0]:T0"></a>
       <span class="permalink">
@@ -331,7 +334,7 @@
     </span>)</span>
               
         </dd></dl></div>
-    </li><li name="FringeSearch#findPath" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="FringeSearch#findPath" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="findPath(cache:Map[Int,(Double,Option[Int])],start:Int,goal:Int,path:List[(Int,(Double,Option[Int]))]):(Map[Int,(Double,Option[Int])],Int,Int,List[(Int,(Double,Option[Int]))])"></a><a id="findPath(Map[Int,(Double,Option[Int])],Int,Int,List[(Int,(Double,Option[Int]))]):(Map[Int,(Double,Option[Int])],Int,Int,List[(Int,(Double,Option[Int]))])"></a>
       <span class="permalink">
       <a href="FringeSearch.html#findPath(cache:Map[Int,(Double,Option[Int])],start:Int,goal:Int,path:List[(Int,(Double,Option[Int]))]):(Map[Int,(Double,Option[Int])],Int,Int,List[(Int,(Double,Option[Int]))])" title="Permalink">
@@ -346,7 +349,7 @@
         <span class="name">findPath</span><span class="params">(<span name="cache">cache: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Int">Int</span>, (<span class="extype" name="scala.Double">Double</span>, <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Int">Int</span>])]</span>, <span name="start">start: <span class="extype" name="scala.Int">Int</span></span>, <span name="goal">goal: <span class="extype" name="scala.Int">Int</span></span>, <span name="path">path: <span class="extype" name="scala.List">List</span>[(<span class="extype" name="scala.Int">Int</span>, (<span class="extype" name="scala.Double">Double</span>, <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Int">Int</span>]))]</span>)</span><span class="result">: (<span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Int">Int</span>, (<span class="extype" name="scala.Double">Double</span>, <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Int">Int</span>])], <span class="extype" name="scala.Int">Int</span>, <span class="extype" name="scala.Int">Int</span>, <span class="extype" name="scala.List">List</span>[(<span class="extype" name="scala.Int">Int</span>, (<span class="extype" name="scala.Double">Double</span>, <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Int">Int</span>]))])</span>
       </span>
       
-      
+      <p class="shortcomment cmt">recursive function to find path from cache, go from goal node upwards (up to start node)</p><div class="fullcomment"><div class="comment cmt"><p>recursive function to find path from cache, go from goal node upwards (up to start node)</p></div><dl class="paramcmts block"><dt class="param">start</dt><dd class="cmt"><p>start node id</p></dd><dt class="param">goal</dt><dd class="cmt"><p>goal node id</p></dd><dt>returns</dt><dd class="cmt"><p>cache, start, goal are additional variables, returns path from start to goal containing tuples same as in cache (node_id, (cost, parent))</p></dd></dl></div>
     </li><li name="scala.AnyRef#getClass" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="getClass():Class[_]"></a>
       <span class="permalink">
@@ -430,7 +433,7 @@
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
-    </li><li name="FringeSearch#isSolved" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="FringeSearch#isSolved" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="isSolved(cache:Map[Int,(Double,Option[Int])]):Boolean"></a><a id="isSolved(Map[Int,(Double,Option[Int])]):Boolean"></a>
       <span class="permalink">
       <a href="FringeSearch.html#isSolved(cache:Map[Int,(Double,Option[Int])]):Boolean" title="Permalink">
@@ -445,7 +448,7 @@
         <span class="name">isSolved</span><span class="params">(<span name="cache">cache: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Int">Int</span>, (<span class="extype" name="scala.Double">Double</span>, <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Int">Int</span>])]</span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
       </span>
       
-      
+      <p class="shortcomment cmt">check whether goal has parent in cache, if so - solution found</p><div class="fullcomment"><div class="comment cmt"><p>check whether goal has parent in cache, if so - solution found</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>path from goal to start is found</p></dd></dl></div>
     </li><li name="scala.AnyRef#ne" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ne(x$1:AnyRef):Boolean"></a><a id="ne(AnyRef):Boolean"></a>
       <span class="permalink">
@@ -500,7 +503,7 @@
                 <span class="name">@native</span><span class="args">()</span>
               
         </dd></dl></div>
-    </li><li name="FringeSearch#run" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="FringeSearch#run" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="run():List[Int]"></a>
       <span class="permalink">
       <a href="FringeSearch.html#run():List[Int]" title="Permalink">
@@ -515,7 +518,9 @@
         <span class="name">run</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Int">Int</span>]</span>
       </span>
       
-      
+      <p class="shortcomment cmt">run the algorithm
+</p><div class="fullcomment"><div class="comment cmt"><p>run the algorithm
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>path of nodes' indices from start to goal</p></dd></dl></div>
     </li><li name="FringeSearch#start" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="start:Int"></a>
       <span class="permalink">
