@@ -5,7 +5,7 @@ Konrad Kucharczyk, Iga Słotwińska
 
 Project for JPS subject implementing fringe search metaheuristics and graph structure in Scala. 
 
-#### Docs [[click](src/main/scala/target/scala-2.12/api/lib/index.html)]
+#### Docs [[click](https://islotwin.github.io/fringe/)]
 
 #### Sources
 For the research we read publication 'Fringe Search: Beating A* at Pathfinding on Game Maps' [[click](https://webdocs.cs.ualberta.ca/~games/pathfind/publications/cig2005.pdf)].
